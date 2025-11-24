@@ -25,7 +25,7 @@ function App() {
       }
     }
 
-    // Si hay una fila vacía, colocar la ficha --
+    // Si hay una fila vacía, colocar la ficha 
     if (filaVaciaIndex !== -1) {
       nuevaColumna[filaVaciaIndex] = turno
       const nuevoTablero = [...tablero]
