@@ -25,7 +25,7 @@ function App() {
       }
     }
 
-    // Si hay una fila vacía, colocar la ficha
+    // Si hay una fila vacía, colocar la ficha --
     if (filaVaciaIndex !== -1) {
       nuevaColumna[filaVaciaIndex] = turno
       const nuevoTablero = [...tablero]
@@ -48,26 +48,26 @@ function App() {
     <>
       <div className="conecta4-container">
         <h1>CONECTA 4</h1>
-        
-        <div className={ turno === turnos.rojo ? 'turno-actual turno-rojo' : 'turno-actual turno-azul' }>
-            Turno: Jugador { turno === turnos.rojo ? 'Rojo' : 'Azul' }
+
+        <div className={turno === turnos.rojo ? 'turno-actual turno-rojo' : 'turno-actual turno-azul'}>
+          Turno: Jugador {turno === turnos.rojo ? 'Rojo' : 'Azul'}
         </div>
-        
+
         <div className="tablero" id="tablero">
-            {tablero.map((columna, index) => (
-              <div className="columna" data-columna={index} key={index}>
+          {tablero.map((columna, index) => (
+            <div className="columna" data-columna={index} key={index}>
               {columna.map((casilla, filaIndex) => (
                 <div className={`celda ficha-${casilla}`} data-fila={`${index}-${filaIndex}`} key={`${index}-${filaIndex}`} onClick={() => handleClick(`${index}-${filaIndex}`)}>
                 </div>
               ))}
-              </div>
-            ))} 
+            </div>
+          ))}
         </div>
-        
+
         <div className="controles">
-            <button className="btn btn-reiniciar" onClick={handleReset}>Reiniciar Juego</button>
+          <button className="btn btn-reiniciar" onClick={handleReset}>Reiniciar Juego</button>
         </div>
-    </div>
+      </div>
     </>
   )
 }
