@@ -1,0 +1,233 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Estilos generales */
+.conecta4-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tablero del juego */
+.tablero {
+  display: grid;
+  grid-template-columns: repeat(7, 60px);
+  grid-template-rows: repeat(6, 60px);
+  gap: 5px;
+  background-color: #1e3a8a;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  margin: 20px 0;
+}
+
+/* Columnas del tablero */
+.columna {
+  display: grid;
+  gap: 5px;
+}
+
+/* Celdas del tablero */
+.celda {
+  width: 60px;
+  height: 60px;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.celda::before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  background: radial-gradient(circle at 30% 30%, #f0f0f0, #d0d0d0);
+  border-radius: 50%;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Fichas de los jugadores */
+.ficha-roja {
+  background-color: #dc2626;
+  animation: caer 0.5s ease-in-out;
+}
+
+.ficha-roja::before {
+  background: radial-gradient(circle at 30% 30%, #ef4444, #b91c1c);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.ficha-azul {
+  background-color: #254dbd;
+  animation: caer 0.5s ease-in-out;
+}
+
+.ficha-azul::before {
+  background: radial-gradient(circle at 30% 30%, #305bd1, #143caa);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Animación de caída de fichas */
+@keyframes caer {
+  0% {
+    transform: translateY(-400px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Indicador de turno */
+.turno-actual {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  margin: 10px 0;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.turno-rojo {
+  color: #fecaca;
+  text-shadow: 0 0 10px #ef4444;
+}
+
+.turno-azul {
+  color: #fef3c7;
+  text-shadow: 0 0 10px #3260f7;
+}
+
+/* Controles */
+.controles {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.btn {
+  padding: 12px 25px;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-reiniciar {
+  background: linear-gradient(45deg, #10b981, #059669);
+  color: white;
+}
+
+.btn-reiniciar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+/* Mensaje de victoria */
+.mensaje-victoria {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 30px 50px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  animation: aparecer 0.5s ease-out;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.mensaje-victoria h2 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+  color: #1f2937;
+}
+
+.mensaje-victoria .ganador-rojo {
+  color: #dc2626;
+}
+
+.mensaje-victoria .ganador-amarillo {
+  color: #d97706;
+}
+
+/* Efecto de fichas ganadoras */
+.ficha-ganadora {
+  animation: brillar 1s ease-in-out infinite alternate;
+}
+
+@keyframes brillar {
+  from {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.9),
+                0 0 30px rgba(255, 255, 255, 0.6);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tablero {
+    grid-template-columns: repeat(7, 35px);
+    grid-template-rows: repeat(6, 35px);
+    gap: 3px;
+    padding: 10px;
+  }
+
+  .columna {
+    gap: 3px;
+  }
+  
+  .celda {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .turno-actual {
+    font-size: 1.2em;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}
+
+/* Efecto hover para las celdas vacías */
+.celda:hover::before {
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
+}
